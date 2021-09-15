@@ -36,6 +36,8 @@ jobs:
           echo $((${{steps.dataPrep.outputs.dataPrepTimestamp}} - ${{steps.start.outputs.startTimestamp}}))
           echo "Import and deploy scenario time ms: "
           echo $((${{steps.deploy.outputs.importAndDeployTimestamp}} - ${{steps.dataPrep.outputs.dataPrepTimestamp}}))
+          echo "Finish scenario time ms: "
+          echo $(($(date +%s%3N) - ${{steps.deploy.outputs.importAndDeployTimestamp}}))
           echo "Overall benchmark time ms: "
           echo $(($(date +%s%3N) - ${{steps.start.outputs.startTimestamp}}))
           } > benchmarkDetails.txt
